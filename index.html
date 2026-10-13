@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #141414;
+            color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        #login {
+            display: none;
+        }
+
+        #home {
+            display: block;
+        }
+
+        #login:target {
+            display: block;
+        }
+
+        #login:target~#home {
+            display: none;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #000000;
+        }
+
+        .logo {
+            color: #e50914;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #b3b3b3;
+        }
+
+        .btn-signin-nav {
+            background-color: #e50914;
+            color: #ffffff;
+            padding: 7px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-signin-nav:hover {
+            background-color: #c10712;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #1a1a1a;
+            border-bottom: 8px solid #222222;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 25px;
+        }
+
+        .btn-get-started {
+            background-color: #e50914;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-get-started:hover {
+            background-color: #c10712;
+        }
+
+        .trending-section {
+            padding: 40px;
+        }
+
+        .trending-section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .movie-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .movie-box {
+            flex: 1;
+            min-width: 160px;
+            height: 200px;
+            background-color: #2b2b2b;
+            border: 1px solid #444444;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .movie-box:hover {
+            background-color: #383838;
+            border-color: #e50914;
+        }
+
+        /* =========================================
+           6. SIGN IN PAGE (#login)
+           ========================================= */
+        .login-container {
+            padding: 40px 20px;
+        }
+
+        .login-box {
+            max-width: 380px;
+            margin: 0 auto;
+            background-color: #000000;
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid #333333;
+        }
+
+        .login-box h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background-color: #333333;
+            border: 1px solid #555555;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #e50914;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .btn-submit:hover {
+            background-color: #c10712;
+        }
+
+        .login-help {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #aaaaaa;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .login-help a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-text {
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+
+        .signup-text a {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login">
+        <nav class="navbar">
+            <a href="#home" class="logo">NETFLIX</a>
+        </nav>
+
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Sign In</h2>
+                <form action="#home">
+                    <input type="text" placeholder="Email or phone number" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-submit">Sign In</button>
+
+                    <div class="login-help">
+                        <label class="remember-me">
+                            <input type="checkbox" checked> Remember me
+                        </label>
+                        <a href="#">Need help?</a>
+                    </div>
+                </form>
+
+                <div class="signup-text">
+                    <p>New to Netflix? <a href="#">Sign up now.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="home">
+        <nav class="navbar">
+            <a href="#home" class="logo">NETFLIX</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#home">TV Shows</a>
+                <a href="#home">Movies</a>
+                <a href="#home">My List</a>
+                <a href="#login" class="btn-signin-nav">Sign In</a>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <h1>Unlimited movies, TV shows, and more.</h1>
+            <p>Watch anywhere. Cancel anytime.</p>
+            <a href="#login">
+                <button class="btn-get-started">Get Started</button>
+            </a>
+        </div>
+        <div class="trending-section">
+            <h2>Trending Now</h2>
+            <div class="movie-row">
+                <div class="movie-box">Stranger Things</div>
+                <div class="movie-box">Money Heist</div>
+                <div class="movie-box">The Witcher</div>
+                <div class="movie-box">Wednesday</div>
+                <div class="movie-box">Extraction</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
